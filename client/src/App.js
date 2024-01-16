@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import MoviesList from './MoviesList';
+import NavBar from './NavBar';
 
 
 
@@ -27,6 +28,7 @@ useEffect(()=>{
 
   return (
     <div>
+      <NavBar/>
       <MoviesList movies={movies}/>
     </div>
   )

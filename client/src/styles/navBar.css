@@ -1,0 +1,33 @@
+/* Ajoutez ces styles dans votre fichier CSS (ou dans votre fichier SCSS si vous l'utilisez) */
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    background: #3b3b3b;
+  }
+  
+  .navBar img {
+    width: 100px;
+    height: 60px;
+  }
+  
+  .navBar input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+  
+  .navBar input:focus {
+    outline: none;
+    border: 2px solid #fff; /* Couleur de la bordure lorsqu'il est en focus, ajustez selon vos besoins */
+  }
+  
