@@ -24,11 +24,24 @@ useEffect(()=>{
   allMovies();
 },[])
 
+const searchMovies =async (mot) =>{
+  if(mot===""){
+    allMovies();
+  }else{
+    try {
+      const res = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${mot}&api_key=${apiKey}`);
+      setMovies(res.data.results);
+      console.log(res.data.results)
+    } catch (error) {
+      console.log('Error lors de la recherche des filme !',error)
+    }
+  }
+}
 
 
   return (
     <div>
-      <NavBar/>
+      <NavBar searchMovies={searchMovies}/>
       <MoviesList movies={movies}/>
     </div>
   )
