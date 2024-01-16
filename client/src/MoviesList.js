@@ -3,7 +3,7 @@ import CardMovies from './CardMovies';
 import './styles/moviesCard.css';
 import PaginationNav from './PaginationNav';
 
-const MoviesList = ({movies,filtrePage,totPage}) => {
+const MoviesList = ({movies,filtrePage,totPage,totFilm}) => {
   return (
     <div className='MoviesList'>
       {movies.map((movie)=>{
@@ -11,7 +11,7 @@ const MoviesList = ({movies,filtrePage,totPage}) => {
           <CardMovies  movie={movie} key={movie.id}/>
         )
       })}
-      <PaginationNav totPage={totPage} filtrePage={filtrePage}/>
+      <PaginationNav movies={movies} totFilm={totFilm} totPage={totPage} filtrePage={filtrePage}/>
     </div>
   )
 }

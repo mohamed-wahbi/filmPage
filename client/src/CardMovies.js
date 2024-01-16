@@ -1,11 +1,12 @@
 import React from 'react';
-import ('./styles/cardMovies.css');
+import './styles/cardMovies.css';
+import { Link } from 'react-router-dom';
 
 const CardMovies = ({movie}) => {
   return (
     <div className='allPosterCard'>
       
-        
+        <Link to={`details/${movie.id}`}>
       <div className='posterCard'>
         <img  src={'https://image.tmdb.org/t/p/w500/'+movie.backdrop_path} alt='PosterImg'/>
         <div className='posterCardInfo'>
@@ -15,6 +16,7 @@ const CardMovies = ({movie}) => {
         </div>
         
       </div>
+      </Link>
 
       </div>
   )

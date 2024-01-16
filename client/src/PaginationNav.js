@@ -1,12 +1,12 @@
 import React from "react";
 import ReactPaginate from 'react-paginate';
 
-const PaginationNav = ({totPage,filtrePage}) => {
+const PaginationNav = ({filtrePage}) => {
     const handlePageClick = (data)=>{
-        console.log(totPage)
+       
         filtrePage(data.selected+1)
     }
-    const pageCount= 500;
+    const pageCount= 500
   return (
     <div>
       <ReactPaginate

@@ -24,10 +24,22 @@
     border-radius: 5px;
     margin-left: 10px;
     font-size: 14px;
+    width: 40%;
   }
   
   .navBar input:focus {
     outline: none;
     border: 2px solid #fff; /* Couleur de la bordure lorsqu'il est en focus, ajustez selon vos besoins */
+  }
+
+  .hrefHome {
+    text-decoration: none;
+    padding: 0px 45px;
+    color: #5bb2a1;
+    transition: 0.4s;
+  }
+
+  .hrefHome:hover {
+    color: #fff;
   }
   
