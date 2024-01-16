@@ -7,14 +7,16 @@ import NavBar from './NavBar';
 
 const App = () => {
 const [movies,setMovies] = useState ([]);
+const [totPage,setTotPage] = useState (0)
 const apiKey = 'c8d17361de180415e1cb161c9fc45a42';
 
 const allMovies = async()=>{
+  
   try {
     const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=${apiKey}`);
-    setMovies(res.data.results);
-    console.log(res.data.results)
-
+      setMovies(res.data.results);
+      setTotPage(res.data.total_pages)
+      
   } catch (error) {
     console.log('Error lors de la fetching movies !',error)
   }
@@ -38,11 +40,22 @@ const searchMovies =async (mot) =>{
   }
 }
 
+const filtrePage = async(page)=>{
+  
+  try {
+    const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}&api_key=${apiKey}`);
+      setMovies(res.data.results);
+      console.log(res.data.results)
+  } catch (error) {
+    console.log('Error lors de la fetching movies !',error)
+  }
+}
+
 
   return (
     <div>
       <NavBar searchMovies={searchMovies}/>
-      <MoviesList movies={movies}/>
+      <MoviesList movies={movies} totPage={totPage} filtrePage={filtrePage}/>
     </div>
   )
 }
