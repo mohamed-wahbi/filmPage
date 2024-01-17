@@ -9,38 +9,20 @@ import {getAllMovies} from './action/ActionMovies.js'
 
 
 
-
 const App = () => {
-const [movies,setMovies] = useState ([]);
-const [totPage,setTotPage] = useState (0)
-const [totFilm,setTotFilm] = useState (0)
-const dispatche = useDispatch ();
+const [totPage,setTotPage] = useState (0);
 const apiKey = 'c8d17361de180415e1cb161c9fc45a42';
 
-useEffect(()=>{
-  allMovies();
-  dispatche(getAllMovies())
-},[])
-
-const allMovies = async()=>{
-  
-  try {
-    const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=${apiKey}`);
-      setMovies(res.data.results); 
-  } catch (error) {
-    console.log('Error lors de la fetching movies !',error)
-  }
-}
 
 
 
 const searchMovies =async (mot) =>{
   if(mot===""){
-    allMovies();
+    // allMovies();
   }else{
     try {
       const res = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${mot}&api_key=${apiKey}`);
-      setMovies(res.data.results);
+      // setMovies(res.data.results);
       console.log(res.data.total_pages)
       setTotPage(res.data.total_pages)
 
@@ -55,7 +37,7 @@ const filtrePage = async(page)=>{
   
   try {
     const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}&api_key=${apiKey}`);
-      setMovies(res.data.results);
+      // setMovies(res.data.results);
   } catch (error) {
     console.log('Error lors de la fetching movies !',error)
   }
@@ -67,7 +49,7 @@ const filtrePage = async(page)=>{
       <NavBar searchMovies={searchMovies}/>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<MoviesList  movies={movies} totPage={totPage} filtrePage={filtrePage}/>} />
+          <Route path='/' element={<MoviesList filtrePage={filtrePage}/>} />
           <Route path='/details/:id' element={<MoviesDetails/>}/>
         </Routes>
       </BrowserRouter>
