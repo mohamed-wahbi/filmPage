@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import MoviesList from './MoviesList';
-import MoviesDetails from './MoviesDetails.js';
-import NavBar from './NavBar';
-import {BrowserRouter,Routes,Route, redirect} from 'react-router-dom';
+import MoviesList from './component/MoviesList.js';
+import MoviesDetails from './component/MoviesDetails.js';
+import NavBar from './component/NavBar.js';
+import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import {useDispatch,useSelector} from 'react-redux'
+import {getAllMovies} from './action/ActionMovies.js'
 
 
 
@@ -12,11 +14,12 @@ const App = () => {
 const [movies,setMovies] = useState ([]);
 const [totPage,setTotPage] = useState (0)
 const [totFilm,setTotFilm] = useState (0)
+const dispatche = useDispatch ();
 const apiKey = 'c8d17361de180415e1cb161c9fc45a42';
 
 useEffect(()=>{
   allMovies();
-  
+  dispatche(getAllMovies())
 },[])
 
 const allMovies = async()=>{
@@ -64,7 +67,7 @@ const filtrePage = async(page)=>{
       <NavBar searchMovies={searchMovies}/>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<MoviesList totFilm={totFilm} movies={movies} totPage={totPage} filtrePage={filtrePage}/>} />
+          <Route path='/' element={<MoviesList  movies={movies} totPage={totPage} filtrePage={filtrePage}/>} />
           <Route path='/details/:id' element={<MoviesDetails/>}/>
         </Routes>
       </BrowserRouter>
